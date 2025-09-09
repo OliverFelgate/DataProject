@@ -1,26 +1,29 @@
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Employee {
-    private String employeeID;
+    private int employeeID;
     private String namePrefix;
     private String firstName;
-    private String middleInitial;
+    private char middleInitial;
     private String lastName;
-    private String gender;
+    private char gender;
     private String email;
-    private String dateOfBirth;
-    private String dateOfJoining;
-    private String salary;
+    private LocalDate dateOfBirth;
+    private LocalDate dateOfJoining;
+    private int salary;
 
     public Employee(
-            String employeeID,
+            int employeeID,
             String namePrefix,
             String firstName,
-            String middleInitial,
+            char middleInitial,
             String lastName,
-            String gender,
+            char gender,
             String email,
-            String dateOfBirth,
-            String dateOfJoining,
-            String salary) {
+            LocalDate dateOfBirth,
+            LocalDate dateOfJoining,
+            int salary) {
         this.employeeID = employeeID;
         this.namePrefix = namePrefix;
         this.firstName = firstName;
@@ -49,11 +52,11 @@ public class Employee {
                 '}';
     }
 
-    public String getEmployeeID() {
+    public int getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(String employeeID) {
+    public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -73,11 +76,11 @@ public class Employee {
         this.firstName = firstName;
     }
 
-    public String getMiddleInitial() {
+    public char getMiddleInitial() {
         return middleInitial;
     }
 
-    public void setMiddleInitial(String middleInitial) {
+    public void setMiddleInitial(char middleInitial) {
         this.middleInitial = middleInitial;
     }
 
@@ -89,11 +92,11 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getGender() {
+    public char getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(char gender) {
         this.gender = gender;
     }
 
@@ -105,27 +108,27 @@ public class Employee {
         this.email = email;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getDateOfJoining() {
+    public LocalDate getDateOfJoining() {
         return dateOfJoining;
     }
 
-    public void setDateOfJoining(String dateOfJoining) {
+    public void setDateOfJoining(LocalDate dateOfJoining) {
         this.dateOfJoining = dateOfJoining;
     }
 
-    public String getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 }
