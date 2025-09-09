@@ -1,3 +1,4 @@
+import java.io.CharConversionException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,19 +10,19 @@ import java.util.List;
 
 public class EmployeeCsvReader { ;
 
-    public Employee createEmployee(String line) {
+    public Employee createEmployee(String line) throws CharConversionException {
         var splitLine = line.split(",");
         return new Employee(
-                splitLine[0].trim(),
+                convertStringToInt(splitLine[0].trim()),
                 splitLine[1].trim(),
                 splitLine[2].trim(),
-                splitLine[3].trim(),
+                convertStringToChar(splitLine[3].trim()),
                 splitLine[4].trim(),
-                splitLine[5].trim(),
+                convertStringToChar(splitLine[5].trim()),
                 splitLine[6].trim(),
-                splitLine[7].trim(),
-                splitLine[8].trim(),
-                splitLine[9].trim()
+                convertStringToDate(splitLine[7].trim()),
+                convertStringToDate(splitLine[8].trim()),
+                convertStringToInt(splitLine[9].trim())
         );
     }
 
@@ -35,7 +36,7 @@ public class EmployeeCsvReader { ;
         return lines;
     }
 
-    public ArrayList<Employee> readEmployees(String fileName) {
+    public ArrayList<Employee> readEmployees(String fileName) throws CharConversionException {
         List<String> lines = readFileLines(fileName);
         ArrayList<Employee> employees = new ArrayList<>(lines.size());
         for(String line: lines)
@@ -47,5 +48,15 @@ public class EmployeeCsvReader { ;
     public LocalDate convertStringToDate(String dateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(dateString, formatter);
+    }
+
+    public int convertStringToInt(String intString) {
+        return Integer.parseInt(intString);
+    }
+
+    public char convertStringToChar(String charString) throws CharConversionException {
+        if (charString.length()!= 1)
+            throw new CharConversionException();
+        return charString.charAt(0);
     }
 }
