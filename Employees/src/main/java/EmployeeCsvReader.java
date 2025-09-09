@@ -1,7 +1,10 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EmployeeCsvReader { ;
@@ -39,5 +42,10 @@ public class EmployeeCsvReader { ;
             employees.add(createEmployee(line));
 
         return employees;
+    }
+
+    public LocalDate convertStringToDate(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(dateString, formatter);
     }
 }

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Employee {
@@ -8,8 +9,8 @@ public class Employee {
     private String lastName;
     private char gender;
     private String email;
-    private Date dateOfBirth;
-    private Date dateOfJoining;
+    private LocalDate dateOfBirth;
+    private LocalDate dateOfJoining;
     private int salary;
 
     public Employee(
@@ -20,8 +21,8 @@ public class Employee {
             String lastName,
             char gender,
             String email,
-            Date dateOfBirth,
-            Date dateOfJoining,
+            LocalDate dateOfBirth,
+            LocalDate dateOfJoining,
             int salary) {
         this.employeeID = employeeID;
         this.namePrefix = namePrefix;
@@ -107,19 +108,19 @@ public class Employee {
         this.email = email;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Date getDateOfJoining() {
+    public LocalDate getDateOfJoining() {
         return dateOfJoining;
     }
 
-    public void setDateOfJoining(Date dateOfJoining) {
+    public void setDateOfJoining(LocalDate dateOfJoining) {
         this.dateOfJoining = dateOfJoining;
     }
 
