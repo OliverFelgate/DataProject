@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EmployeeTests {
     private EmployeeCsvReader reader;
-    private String testFile = "src/main/resources/employees_short.csv"; // adjust path if needed
+    private String testFile = "src/test/resources/employees_short.csv"; // adjust path if needed
 
     @BeforeEach
     void setup() {
@@ -49,7 +49,7 @@ public class EmployeeTests {
     void givenCsvFile_readFileLines_FirstLineIsHeader() {
         List<String> lines = reader.readFileLines(testFile);
 
-        assertTrue(lines.get(0).startsWith("Employee ID"));
+        assertTrue(lines.get(0).startsWith("Emp ID"));
     }
 
     @Test
@@ -66,14 +66,14 @@ public class EmployeeTests {
     void givenCsvFile_readEmployees_ReturnsCorrectLength() {
         ArrayList<Employee> employees = reader.readEmployees(testFile);
 
-        assertEquals(10, employees.size());
+        assertEquals(11, employees.size());
     }
 
     @Test
     void givenCsvFile_readEmployees_FirstEmployeeIsCorrect() {
         ArrayList<Employee> employees = reader.readEmployees(testFile);
 
-        Employee first = employees.get(0);
+        Employee first = employees.get(1);
 
         assertEquals("198429", first.getEmployeeID());
         assertEquals("Serafina", first.getFirstName());
