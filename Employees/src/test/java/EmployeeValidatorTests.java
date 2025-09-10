@@ -86,15 +86,15 @@ public class EmployeeValidatorTests {
 
     @Test
     void givenValidDate_ReturnsTrue() {
-        assertTrue(EmployeeValidator.validateDob("9/21/1982"));   // mm/dd/yyyy
-        assertTrue(EmployeeValidator.validateDob("12/1/2008"));   // single digit day
+        assertTrue(EmployeeValidator.validateDate("9/21/1982"));   // mm/dd/yyyy
+        assertTrue(EmployeeValidator.validateDate("12/1/2008"));   // single digit day
     }
 
     @Test
     void givenInvalidDate_ReturnsFalse() {
-        assertFalse(EmployeeValidator.validateDob("31/02/2000")); // invalid day/month
-        assertFalse(EmployeeValidator.validateDob("1982/09/21")); // wrong format
-        assertFalse(EmployeeValidator.validateDob(""));           // empty
+        assertFalse(EmployeeValidator.validateDate("31/02/2000")); // invalid day/month
+        assertFalse(EmployeeValidator.validateDate("1982/09/21")); // wrong format
+        assertFalse(EmployeeValidator.validateDate(""));           // empty
     }
 
     //Salary Validation
