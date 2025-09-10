@@ -34,6 +34,25 @@ public class EmployeeValidatorTests {
         assertFalse(EmployeeValidator.validateName("@Name")); // invalid char
     }
 
+    //Middle initial Validation
+
+    @Test
+    void givenValidMiddleInitial_ReturnsTrue() {
+        assertTrue(EmployeeValidator.validateMiddleInitial("A"));
+        assertTrue(EmployeeValidator.validateMiddleInitial("Z"));
+    }
+
+    @Test
+    void givenInvalidMiddleInitial_ReturnsFalse() {
+        assertFalse(EmployeeValidator.validateMiddleInitial(""));     // empty
+        assertFalse(EmployeeValidator.validateMiddleInitial("AB"));   // more than one character
+        assertFalse(EmployeeValidator.validateMiddleInitial("a"));    // lowercase
+        assertFalse(EmployeeValidator.validateMiddleInitial("1"));    // digit
+        assertFalse(EmployeeValidator.validateMiddleInitial("@"));    // special char
+        assertFalse(EmployeeValidator.validateMiddleInitial(null));   // null
+    }
+
+
     //Gender Validation
 
     @Test
@@ -67,15 +86,15 @@ public class EmployeeValidatorTests {
 
     @Test
     void givenValidDate_ReturnsTrue() {
-        assertTrue(EmployeeValidator.validateDate("9/21/1982"));   // mm/dd/yyyy
-        assertTrue(EmployeeValidator.validateDate("12/1/2008"));   // single digit day
+        assertTrue(EmployeeValidator.validateDob("9/21/1982"));   // mm/dd/yyyy
+        assertTrue(EmployeeValidator.validateDob("12/1/2008"));   // single digit day
     }
 
     @Test
     void givenInvalidDate_ReturnsFalse() {
-        assertFalse(EmployeeValidator.validateDate("31/02/2000")); // invalid day/month
-        assertFalse(EmployeeValidator.validateDate("1982/09/21")); // wrong format
-        assertFalse(EmployeeValidator.validateDate(""));           // empty
+        assertFalse(EmployeeValidator.validateDob("31/02/2000")); // invalid day/month
+        assertFalse(EmployeeValidator.validateDob("1982/09/21")); // wrong format
+        assertFalse(EmployeeValidator.validateDob(""));           // empty
     }
 
     //Salary Validation
