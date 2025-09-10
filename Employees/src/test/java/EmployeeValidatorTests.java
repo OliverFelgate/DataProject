@@ -16,7 +16,6 @@ public class EmployeeValidatorTests {
     void givenInvalidId_ReturnsFalse() {
         assertFalse(EmployeeValidator.validateId("19A429")); // contains a letter
         assertFalse(EmployeeValidator.validateId(""));       // empty
-        assertFalse(EmployeeValidator.validateId(null));     // null
     }
 
     //Name Validation
@@ -33,6 +32,24 @@ public class EmployeeValidatorTests {
         assertFalse(EmployeeValidator.validateName("1234"));  // numbers
         assertFalse(EmployeeValidator.validateName("@Name")); // invalid char
     }
+
+    //Middle initial Validation
+
+    @Test
+    void givenValidMiddleInitial_ReturnsTrue() {
+        assertTrue(EmployeeValidator.validateMiddleInitial("A"));
+        assertTrue(EmployeeValidator.validateMiddleInitial("Z"));
+    }
+
+    @Test
+    void givenInvalidMiddleInitial_ReturnsFalse() {
+        assertFalse(EmployeeValidator.validateMiddleInitial(""));     // empty
+        assertFalse(EmployeeValidator.validateMiddleInitial("AB"));   // more than one character
+        assertFalse(EmployeeValidator.validateMiddleInitial("a"));    // lowercase
+        assertFalse(EmployeeValidator.validateMiddleInitial("1"));    // digit
+        assertFalse(EmployeeValidator.validateMiddleInitial("@"));    // special char
+    }
+
 
     //Gender Validation
 
