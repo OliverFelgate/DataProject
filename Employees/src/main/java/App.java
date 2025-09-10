@@ -1,5 +1,5 @@
 public class App {
     public static void main(String[] args) {
-        System.out.println(EmployeeValidator.validateMiddleInitial("A"));
+        System.out.println(EmployeeValidator.validateName("A"));
     }
 }
