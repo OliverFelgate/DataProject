@@ -10,21 +10,29 @@ import java.util.List;
 
 public class EmployeeCsvReader { ;
 
+    private List<String> invalidLines = new ArrayList<>();
+
     public Employee createEmployee(String line) throws CharConversionException {
         var splitLine = line.split(",");
-        return new Employee(
-                convertStringToInt(splitLine[0].trim()),
-                splitLine[1].trim(),
-                splitLine[2].trim(),
-                convertStringToChar(splitLine[3].trim()),
-                splitLine[4].trim(),
-                convertStringToChar(splitLine[5].trim()),
-                splitLine[6].trim(),
-                convertStringToDate(splitLine[7].trim()),
-                convertStringToDate(splitLine[8].trim()),
-                convertStringToInt(splitLine[9].trim())
-        );
+        if (validateLine(splitLine)) {
+            return new Employee(
+                    convertStringToInt(splitLine[0].trim()),
+                    splitLine[1].trim(),
+                    splitLine[2].trim(),
+                    convertStringToChar(splitLine[3].trim()),
+                    splitLine[4].trim(),
+                    convertStringToChar(splitLine[5].trim()),
+                    splitLine[6].trim(),
+                    convertStringToDate(splitLine[7].trim()),
+                    convertStringToDate(splitLine[8].trim()),
+                    convertStringToInt(splitLine[9].trim())
+            );
+        } else {
+            invalidLines.add(line);
+            throw new IllegalArgumentException();
+        }
     }
+
 
     public List<String> readFileLines(String filePath) {
         List<String> lines = new ArrayList<>();
@@ -58,5 +66,18 @@ public class EmployeeCsvReader { ;
         if (charString.length()!= 1)
             throw new CharConversionException();
         return charString.charAt(0);
+    }
+
+    private boolean validateLine(String[] line) {
+        return EmployeeValidator.validateId(line[0]) &&
+                EmployeeValidator.validatePrefix(line[1]) &&
+                EmployeeValidator.validateFirstName(line[2]) &&
+                EmployeeValidator.validateMiddleInitial(line[3]) &&
+                EmployeeValidator.validateLastName(line[4]) &&
+                EmployeeValidator.validateGender(line[5]) &&
+                EmployeeValidator.validateEmail(line[6]) &&
+                EmployeeValidator.validateDob(line[7]) &&
+                EmployeeValidator.validateDateOfJoining(line[8]) &&
+                EmployeeValidator.validateSalary(line[9]);
     }
 }
