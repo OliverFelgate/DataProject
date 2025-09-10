@@ -41,4 +41,30 @@ public class FileSerialiser {
             e.printStackTrace();
         }
     }
+
+    public static List<Employee> jsonFileToEmployeeList(String path) {
+        List<String> file = new ArrayList<>();
+        try {
+            file = Files.readAllLines(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // TODO
+        // Deserialise file into String array
+        // Convert array into Employee object
+        return null;
+    }
+
+    public static List<Employee> xmlFileToEmployeeList(String path) {
+        List<String> file = new ArrayList<>();
+        try {
+            file = Files.readAllLines(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // TODO
+        // Deserialise file into String array
+        // Convert array into Employee objects
+        return null;
+    }
 }
