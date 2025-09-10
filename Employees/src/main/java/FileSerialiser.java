@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,6 +21,22 @@ public class FileSerialiser {
 
         try {
             Files.write(Paths.get(path), jsonList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void employeeListToXMLFile(List<Employee> employees, String path) throws JsonProcessingException {
+        XmlMapper mapper = new XmlMapper();
+        ArrayList<String> xmlList = new ArrayList<>();
+
+        for (Employee emp : employees) {
+            String empXml = mapper.writeValueAsString(emp);
+            xmlList.add(empXml);
+        }
+
+        try {
+            Files.write(Paths.get(path), xmlList);
         } catch (IOException e) {
             e.printStackTrace();
         }
