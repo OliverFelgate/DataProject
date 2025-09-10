@@ -10,21 +10,28 @@ import java.util.List;
 
 public class EmployeeCsvReader { ;
 
+    private List<String> invalidLines = new ArrayList<>();
+
     public Employee createEmployee(String line) throws CharConversionException {
         var splitLine = line.split(",");
-        return new Employee(
-                convertStringToInt(splitLine[0].trim()),
-                splitLine[1].trim(),
-                splitLine[2].trim(),
-                convertStringToChar(splitLine[3].trim()),
-                splitLine[4].trim(),
-                convertStringToChar(splitLine[5].trim()),
-                splitLine[6].trim(),
-                convertStringToDate(splitLine[7].trim()),
-                convertStringToDate(splitLine[8].trim()),
-                convertStringToInt(splitLine[9].trim())
-        );
+//        if (validateLine(splitLine)) {
+            return new Employee(
+                    convertStringToInt(splitLine[0].trim()),
+                    splitLine[1].trim(),
+                    splitLine[2].trim(),
+                    convertStringToChar(splitLine[3].trim()),
+                    splitLine[4].trim(),
+                    convertStringToChar(splitLine[5].trim()),
+                    splitLine[6].trim(),
+                    convertStringToDate(splitLine[7].trim()),
+                    convertStringToDate(splitLine[8].trim()),
+                    convertStringToInt(splitLine[9].trim())
+            );
+//        } else {
+//            invalidLines.add(line);
+//        }
     }
+
 
     public List<String> readFileLines(String filePath) {
         List<String> lines = new ArrayList<>();
@@ -59,4 +66,8 @@ public class EmployeeCsvReader { ;
             throw new CharConversionException();
         return charString.charAt(0);
     }
+
+//    private boolean validateLine(String[] splitLine) {
+//        return ;
+//    }
 }
