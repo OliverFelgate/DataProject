@@ -14,7 +14,7 @@ public class EmployeeCsvReader { ;
 
     public Employee createEmployee(String line) throws CharConversionException {
         var splitLine = line.split(",");
-//        if (validateLine(splitLine)) {
+        if (validateLine(splitLine)) {
             return new Employee(
                     convertStringToInt(splitLine[0].trim()),
                     splitLine[1].trim(),
@@ -27,9 +27,10 @@ public class EmployeeCsvReader { ;
                     convertStringToDate(splitLine[8].trim()),
                     convertStringToInt(splitLine[9].trim())
             );
-//        } else {
-//            invalidLines.add(line);
-//        }
+        } else {
+            invalidLines.add(line);
+            throw new IllegalArgumentException();
+        }
     }
 
 
@@ -67,7 +68,16 @@ public class EmployeeCsvReader { ;
         return charString.charAt(0);
     }
 
-//    private boolean validateLine(String[] splitLine) {
-//        return ;
-//    }
+    private boolean validateLine(String[] line) {
+        return EmployeeValidator.validateId(line[0]) &&
+                EmployeeValidator.validatePrefix(line[1]) &&
+                EmployeeValidator.validateFirstName(line[2]) &&
+                EmployeeValidator.validateMiddleInitial(line[3]) &&
+                EmployeeValidator.validateLastName(line[4]) &&
+                EmployeeValidator.validateGender(line[5]) &&
+                EmployeeValidator.validateEmail(line[6]) &&
+                EmployeeValidator.validateDob(line[7]) &&
+                EmployeeValidator.validateDateOfJoining(line[8]) &&
+                EmployeeValidator.validateSalary(line[9]);
+    }
 }
