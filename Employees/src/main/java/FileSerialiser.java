@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
@@ -42,29 +43,38 @@ public class FileSerialiser {
         }
     }
 
-    public static List<Employee> jsonFileToEmployeeList(String path) {
+    public static List<Employee> jsonFileToEmployeeList(String path) throws JsonProcessingException {
         List<String> file = new ArrayList<>();
+        List<Employee> output = new ArrayList<>();
+
         try {
             file = Files.readAllLines(Paths.get(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // TODO
-        // Deserialise file into String array
-        // Convert array into Employee object
-        return null;
+
+        ObjectMapper mapper = new ObjectMapper();
+        for (String line: file) {
+            output.add(mapper.readValue(line, new TypeReference<Employee>(){}));
+        }
+
+        return output;
     }
 
-    public static List<Employee> xmlFileToEmployeeList(String path) {
+    public static List<Employee> xmlFileToEmployeeList(String path) throws JsonProcessingException {
         List<String> file = new ArrayList<>();
+        List<Employee> output = new ArrayList<>();
+
         try {
             file = Files.readAllLines(Paths.get(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // TODO
-        // Deserialise file into String array
-        // Convert array into Employee objects
-        return null;
+
+        XmlMapper mapper = new XmlMapper();
+        for (String line: file) {
+            output.add(mapper.readValue(line, new TypeReference<Employee>(){}));
+        }
+        return output;
     }
 }
