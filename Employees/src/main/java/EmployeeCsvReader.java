@@ -40,7 +40,6 @@ public class EmployeeCsvReader { ;
         } else {
             invalidLines.add(line);
             logger.log(Level.WARNING, "Line contains invalid data: " + line);
-//            throw new IllegalArgumentException();
             return null;
         }
     }

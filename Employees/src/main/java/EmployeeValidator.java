@@ -8,7 +8,7 @@ public class EmployeeValidator {
     static Logger logger = LoggerProvider.getLogger();
 
     public static boolean validateId(String data) {
-        String regex = "[0-9]{6}";
+        String regex = "[1-9][0-9]{5}";
         Pattern stringPattern = Pattern.compile(regex);
         Matcher stringMatcher = stringPattern.matcher(data);
         if (!stringMatcher.matches())

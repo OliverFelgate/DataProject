@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-        String testFile = "src/main/resources/employees_short.csv";
+        String testFile = "src/main/resources/employees(in).csv";
         EmployeeCsvReader reader = new EmployeeCsvReader();
         ArrayList<Employee> employees = new ArrayList<>();
         try {
@@ -17,14 +17,16 @@ public class App {
 //        System.out.println(employees);
         System.out.println(reader.getInvalidLines().size());
 
+        // Serialising
         try {
             assert employees != null;
-//            FileSerialiser.employeeListToJsonFile(employees, "src/main/resources/employees.json");
+            FileSerialiser.employeeListToJsonFile(employees, "src/main/resources/employees.json");
             FileSerialiser.employeeListToXMLFile(employees, "src/main/resources/employees.xml");
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
+        // Deserialising
         try {
 //            System.out.println(FileSerialiser.jsonFileToEmployeeList("src/main/resources/employees.json"));
 //            System.out.println(FileSerialiser.xmlFileToEmployeeList("src/main/resources/employees.xml"));
@@ -35,7 +37,7 @@ public class App {
 
         // Prefix
         EmployeeLambdaExpressions.filterByTitle(employees, "Mrs.");
-        System.out.println("Employees after removing a prefixgti");
+        System.out.println("Employees after removing a prefix");
         employees.forEach(System.out::println);
         System.out.println(employees.size());
 
