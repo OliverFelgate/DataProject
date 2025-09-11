@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EmployeeTests {
     private EmployeeCsvReader reader;
-    private String testFile = "src/test/resources/employees_short.csv"; // adjust path if needed
+    private String testFile = "src/main/resources/employees_short.csv"; // adjust path if needed
 
     @BeforeEach
     void setup() {
@@ -23,7 +23,7 @@ public class EmployeeTests {
     void givenLineOfCsv_createEmployee_ReturnsCorrectEmployee() {
         LocalDate date1 = LocalDate.of(1982, 9, 21);
         LocalDate date2 = LocalDate.of(2008, 1, 2);
-        String line = "198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,21/09/1982,02/01/2008,69294";
+        String line = "198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,09/21/1982,01/02/2008,69294";
 
         Employee emp = null;
         try {
@@ -75,7 +75,7 @@ public class EmployeeTests {
         ArrayList<Employee> employees = null;
         try {
             employees = reader.readEmployees(testFile);
-        } catch (CharConversionException e) {
+        } catch (CharConversionException | IllegalArgumentException e) {
             e.printStackTrace();
         }
 
@@ -87,7 +87,7 @@ public class EmployeeTests {
         ArrayList<Employee> employees = null;
         try {
             employees = reader.readEmployees(testFile);
-        } catch (CharConversionException e) {
+        } catch (CharConversionException | IllegalArgumentException e) {
             e.printStackTrace();
         }
 
@@ -103,7 +103,7 @@ public class EmployeeTests {
         ArrayList<Employee> employees = null;
         try {
             employees = reader.readEmployees(testFile);
-        } catch (CharConversionException e) {
+        } catch (CharConversionException | IllegalArgumentException e) {
             e.printStackTrace();
         }
 
@@ -133,7 +133,7 @@ public class EmployeeTests {
     // Date Conversion Tests
     @Test
     void givenValidDateString_convertDate_ReturnsLocalDate() {
-        LocalDate dob = reader.convertStringToDate("21/09/1982"); // dd/MM/yyyy
+        LocalDate dob = reader.convertStringToDate("09/21/1982"); // dd/MM/yyyy
         assertEquals(LocalDate.of(1982, 9, 21), dob);
     }
 
@@ -164,7 +164,7 @@ public class EmployeeTests {
     //Employee creation with parsed data
     @Test
     void givenValidLine_createEmployee_ReturnsEmployeeWithCorrectTypes() {
-        String line = "198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,21/09/1982,01/02/2008,69294";
+        String line = "198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,09/21/1982,02/01/2008,69294";
 
         Employee emp = null;
         try {
