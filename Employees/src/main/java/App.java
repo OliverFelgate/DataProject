@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-        String testFile = "src/main/resources/employees(in).csv";
+        String testFile = "src/main/resources/employees_short.csv";
         EmployeeCsvReader reader = new EmployeeCsvReader();
         ArrayList<Employee> employees = new ArrayList<>();
         try {
@@ -34,11 +34,15 @@ public class App {
         }
 
         // Prefix
-        System.out.println(EmployeeLambdaExpressions.filterByTitle(employees, "Prof."));
+        EmployeeLambdaExpressions.filterByTitle(employees, "Mrs.");
+        System.out.println("Employees after removing a prefixgti");
+        employees.forEach(System.out::println);
         System.out.println(employees.size());
 
         // ID
-        System.out.println(EmployeeLambdaExpressions.sortByID(employees));
+        EmployeeLambdaExpressions.sortByID(employees);
+        System.out.println("Employees after sorting");
+        employees.forEach(System.out::println);
 
         // Gender
         EmployeeLambdaExpressions.filterByGender(employees);
