@@ -7,10 +7,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EmployeeCsvReader { ;
+    private static final Logger logger = LoggerProvider.getLogger();
+    private final List<String> invalidLines = new ArrayList<>();
 
-    private List<String> invalidLines = new ArrayList<>();
+    public EmployeeCsvReader() {
+        logger.setLevel(Level.CONFIG);
+    }
+
+    public List<String> getInvalidLines() {
+        return invalidLines;
+    }
 
     public Employee createEmployee(String line) throws CharConversionException {
         var splitLine = line.split(",");
@@ -29,7 +39,9 @@ public class EmployeeCsvReader { ;
             );
         } else {
             invalidLines.add(line);
-            throw new IllegalArgumentException();
+            logger.log(Level.WARNING, "Line contains invalid data: " + line);
+//            throw new IllegalArgumentException();
+            return null;
         }
     }
 
@@ -54,7 +66,7 @@ public class EmployeeCsvReader { ;
     }
 
     public LocalDate convertStringToDate(String dateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         return LocalDate.parse(dateString, formatter);
     }
 
