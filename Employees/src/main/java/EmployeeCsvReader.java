@@ -58,10 +58,13 @@ public class EmployeeCsvReader { ;
 
     public ArrayList<Employee> readEmployees(String fileName) throws CharConversionException {
         List<String> lines = readFileLines(fileName);
+        Employee employee;
         ArrayList<Employee> employees = new ArrayList<>(lines.size());
-        for(String line: lines)
-            employees.add(createEmployee(line));
-
+        for(String line: lines) {
+            employee = createEmployee(line);
+            if (employee != null)
+                employees.add(createEmployee(line));
+        }
         return employees;
     }
 
