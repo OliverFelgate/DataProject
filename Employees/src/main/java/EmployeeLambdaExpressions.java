@@ -29,4 +29,3 @@ public class EmployeeLambdaExpressions {
         employees.forEach(System.out::println);
     }
 }
-
